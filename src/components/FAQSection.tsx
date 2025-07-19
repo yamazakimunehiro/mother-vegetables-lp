@@ -15,22 +15,22 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="py-20 bg-black">
+    <section className="py-20 md:py-24 bg-black">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <p className="text-sm text-[#b8860b] mb-4 tracking-wider">よくあるご質問</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">
+            <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-white">
               よくあるご質問
             </h2>
             <div className="w-20 h-1 bg-[#b8860b] mx-auto" />
           </div>
           
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {faqs.map((faq, index) => (
-              <div key={index} className="border-b border-[#b8860b]/20 pb-6">
-                <h3 className="text-lg font-bold mb-3 text-[#b8860b]">Q. {faq.question}</h3>
-                <p className="text-gray-300">A. {faq.answer}</p>
+              <div key={index} className="border-b border-[#b8860b]/20 pb-4 md:pb-6">
+                <h3 className="text-base md:text-lg font-bold mb-2 md:mb-3 text-[#b8860b]">Q. {faq.question}</h3>
+                <p className="text-sm md:text-base text-gray-300">A. {faq.answer}</p>
               </div>
             ))}
           </div>

@@ -39,11 +39,11 @@ export default function TestimonialSection() {
 
   return (
     <>
-      <section id="voice" className="py-20 bg-black">
+      <section id="voice" className="py-20 md:py-24 bg-black">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <p className="text-sm text-[#b8860b] mb-4 tracking-wider">お客様の声</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">
+            <h2 className="text-2xl md:text-4xl font-bold mb-8 text-white">
               実際にご使用いただいた<br />
               お客様の喜びの声
             </h2>
@@ -53,22 +53,22 @@ export default function TestimonialSection() {
           <div className="max-w-7xl mx-auto">
             {/* Testimonial Cards */}
             <div className="mb-20">
-              <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {testimonials.map((testimonial) => (
                   <div key={testimonial.id} className="w-full flex justify-center">
-                    <div className="testimonial-card rounded-3xl p-8 bg-gradient-to-br from-gray-900 to-black border border-[#b8860b]/20 hover:border-[#b8860b]/40 transition-all duration-500 w-full max-w-md">
+                    <div className="testimonial-card rounded-3xl p-6 md:p-8 bg-gradient-to-br from-gray-900 to-black border border-[#b8860b]/20 hover:border-[#b8860b]/40 transition-all duration-500 w-full max-w-md">
                       <div className="flex flex-col items-center">
-                        <div>
-                          <h4 className="text-lg font-light mb-6 text-[#b8860b] tracking-wider">使用前</h4>
+                        <div className="w-full">
+                          <h4 className="text-base md:text-lg font-light mb-4 md:mb-6 text-[#b8860b] tracking-wider">使用前</h4>
                           <div 
-                            className="relative aspect-square bg-gray-900 rounded-2xl overflow-hidden mb-6 group cursor-pointer transition-all duration-300 hover:border hover:border-[#b8860b]/30"
+                            className="relative aspect-square bg-gray-900 rounded-2xl overflow-hidden mb-4 md:mb-6 group cursor-pointer transition-all duration-300 hover:border hover:border-[#b8860b]/30"
                             onClick={() => setModalImage(`before${testimonial.id}`)}
                           >
                             <div className="w-full h-full bg-gray-900 flex items-center justify-center">
                               <p className="text-gray-400">{testimonial.beforeImage}</p>
                             </div>
-                            <div className="absolute bottom-4 left-4 bg-black/90 backdrop-blur-sm px-4 py-2 rounded-full border border-[#b8860b]/30">
-                              <p className="text-sm font-medium text-[#b8860b]">Before</p>
+                            <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4 bg-black/90 backdrop-blur-sm px-3 md:px-4 py-1 md:py-2 rounded-full border border-[#b8860b]/30">
+                              <p className="text-xs md:text-sm font-medium text-[#b8860b]">Before</p>
                             </div>
                             <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                               <svg viewBox="0 0 24 24" className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -77,17 +77,17 @@ export default function TestimonialSection() {
                             </div>
                           </div>
                         </div>
-                        <div>
-                          <h4 className="text-lg font-light mb-6 text-[#b8860b] tracking-wider">使用後</h4>
+                        <div className="w-full">
+                          <h4 className="text-base md:text-lg font-light mb-4 md:mb-6 text-[#b8860b] tracking-wider">使用後</h4>
                           <div 
-                            className="relative aspect-square bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden mb-6 group cursor-pointer transition-all duration-300 hover:border hover:border-[#b8860b]/30"
+                            className="relative aspect-square bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden mb-4 md:mb-6 group cursor-pointer transition-all duration-300 hover:border hover:border-[#b8860b]/30"
                             onClick={() => setModalImage(`after${testimonial.id}`)}
                           >
                             <div className="w-full h-full bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
                               <p className="text-gray-400">{testimonial.afterImage}</p>
                             </div>
-                            <div className="absolute bottom-4 left-4 bg-gradient-to-r from-[#b8860b] to-[#d4c4b0] text-black px-4 py-2 rounded-full">
-                              <p className="text-sm font-medium">After</p>
+                            <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4 bg-gradient-to-r from-[#b8860b] to-[#d4c4b0] text-black px-3 md:px-4 py-1 md:py-2 rounded-full">
+                              <p className="text-xs md:text-sm font-medium">After</p>
                             </div>
                             <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                               <svg viewBox="0 0 24 24" className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -96,10 +96,10 @@ export default function TestimonialSection() {
                             </div>
                           </div>
                           <div className="text-center">
-                            <p className="text-base text-gray-300 mb-3 font-light leading-relaxed">
+                            <p className="text-sm md:text-base text-gray-300 mb-3 font-light leading-relaxed">
                               "{testimonial.comment}"
                             </p>
-                            <p className="text-sm text-[#b8860b]">{testimonial.name}</p>
+                            <p className="text-xs md:text-sm text-[#b8860b]">{testimonial.name}</p>
                           </div>
                         </div>
                       </div>
@@ -110,14 +110,14 @@ export default function TestimonialSection() {
             </div>
 
             {/* Survey Results */}
-            <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 mt-16 border border-[#b8860b]/20">
-              <h3 className="text-2xl font-bold mb-8 text-center text-white">ご愛用者様アンケート結果</h3>
-              <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 md:p-8 mt-12 md:mt-16 border border-[#b8860b]/20">
+              <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center text-white">ご愛用者様アンケート結果</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 {surveyResults.map((result, index) => (
                   <div key={index}>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-gray-300">{result.label}</span>
-                      <span className="font-bold text-[#b8860b]">{result.percentage}%</span>
+                      <span className="text-sm md:text-base text-gray-300">{result.label}</span>
+                      <span className="font-bold text-sm md:text-base text-[#b8860b]">{result.percentage}%</span>
                     </div>
                     <div className="w-full bg-gray-800 rounded-full h-3">
                       <div 
@@ -128,7 +128,7 @@ export default function TestimonialSection() {
                   </div>
                 ))}
               </div>
-              <p className="text-sm text-gray-400 text-center mt-4">※2024年10月実施 n=500</p>
+              <p className="text-xs md:text-sm text-gray-400 text-center mt-4">※2024年10月実施 n=500</p>
             </div>
           </div>
         </div>

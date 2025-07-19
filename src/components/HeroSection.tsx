@@ -21,10 +21,10 @@ export default function HeroSection() {
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pearl-glow opacity-5" />
       
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
-        <div className="text-center max-w-5xl mx-auto">
+        <div className="text-center max-w-6xl mx-auto w-full">
           {/* メインタイトル */}
           <div className={`space-y-8 ${isVisible ? 'luxury-reveal' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-thin text-white tracking-wider leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-thin text-white tracking-wider leading-[1.2] mb-8">
               朝の<span className="text-gold-gradient">5秒</span>が、<br />
               一日を<span className="relative inline-block">
                 変える
@@ -33,7 +33,7 @@ export default function HeroSection() {
             </h1>
             
             {/* サブコピー */}
-            <p className="text-lg md:text-xl text-gray-400 font-light tracking-wider max-w-3xl mx-auto">
+            <p className="text-base md:text-lg text-gray-400 font-light tracking-wider max-w-3xl mx-auto mb-12">
               35億年前の生命起源から生まれた特殊微粒子配合<br />
               崩れ知らずの陶器肌で、24時間美しさが持続
             </p>
@@ -48,19 +48,19 @@ export default function HeroSection() {
             </div>
             
             {/* CTA ボタン */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
-              <button className="group relative px-12 py-5 bg-white text-black overflow-hidden transition-all duration-500 hover:scale-105">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
+              <button className="group relative px-10 py-4 bg-white text-black overflow-hidden transition-all duration-500 hover:scale-105 w-full sm:w-auto">
                 <span className="relative z-10 text-sm tracking-[0.2em]">購入する</span>
                 <div className="absolute inset-0 crystal-effect opacity-0 group-hover:opacity-100" />
               </button>
               
-              <button className="px-12 py-5 border border-gray-600 text-white text-sm tracking-[0.2em] transition-all duration-300 hover:border-white hover:text-white">
+              <button className="px-10 py-4 border border-gray-600 text-white text-sm tracking-[0.2em] transition-all duration-300 hover:border-white hover:text-white w-full sm:w-auto">
                 詳細を見る
               </button>
             </div>
             
             {/* 特徴アイコン */}
-            <div className="flex items-center justify-center gap-12 pt-12">
+            <div className="flex items-center justify-center gap-8 md:gap-12 pt-12">
               <div className="text-center">
                 <div className="w-12 h-12 mx-auto mb-2 border border-gray-600 rounded-full flex items-center justify-center">
                   <span className="text-white text-xs">✓</span>

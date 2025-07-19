@@ -24,21 +24,21 @@ export default function FeatureSection() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-20 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-sm text-gray-600 mb-4 tracking-[0.2em]">FEATURES</p>
-            <h2 className="text-3xl md:text-4xl font-thin text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-4xl font-thin text-gray-900 mb-6">
               なぜ、選ばれ続けるのか
             </h2>
             <div className="w-20 h-[1px] bg-[#D4C4B0] mx-auto" />
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {features.map((feature, index) => (
               <div key={index} className="group">
-                <div className="bg-white p-8 h-full luxury-shadow transition-all duration-300 hover:transform hover:scale-105">
+                <div className="bg-white p-6 md:p-8 h-full luxury-shadow transition-all duration-300 hover:transform hover:scale-105">
                   <div className={`w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center text-3xl`}>
                     {feature.icon}
                   </div>

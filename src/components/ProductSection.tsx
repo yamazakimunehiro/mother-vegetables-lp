@@ -49,11 +49,11 @@ export default function ProductSection() {
   ];
 
   return (
-    <section id="product" className="py-20 bg-gradient-to-b from-black to-gray-900">
+    <section id="product" className="py-20 md:py-24 bg-gradient-to-b from-black to-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <p className="text-sm text-[#b8860b] mb-4 tracking-wider">商品ラインナップ</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">
+          <h2 className="text-2xl md:text-4xl font-bold mb-8 text-white">
             Mother Vegetables Confidence<br />
             MV-Si002 商品ラインナップ
           </h2>
@@ -62,11 +62,11 @@ export default function ProductSection() {
         
         <div className="max-w-7xl mx-auto">
           {/* Product Size Selection */}
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
             {products.map((product) => (
               <div
                 key={product.size}
-                className={`size-selector bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 border-2 text-center shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group cursor-pointer ${
+                className={`size-selector bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 md:p-8 border-2 text-center shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group cursor-pointer ${
                   product.popular ? 'border-[#b8860b]' : 'border-[#b8860b]/20'
                 } ${selectedSize === product.size ? 'ring-4 ring-[#b8860b] ring-opacity-50' : ''}`}
                 onClick={() => setSelectedSize(product.size)}
@@ -91,10 +91,10 @@ export default function ProductSection() {
                     </div>
                   </div>
                   
-                  <h3 className="text-2xl font-light mb-2 text-white">{product.title}</h3>
-                  <p className="text-gray-400 mb-4">{product.description}</p>
+                  <h3 className="text-xl md:text-2xl font-light mb-2 text-white">{product.title}</h3>
+                  <p className="text-sm md:text-base text-gray-400 mb-4">{product.description}</p>
                   
-                  <div className="space-y-2 text-sm text-gray-400 mb-6">
+                  <div className="space-y-2 text-xs md:text-sm text-gray-400 mb-6">
                     {product.features.map((feature, index) => (
                       <p key={index} className="flex items-center justify-center">
                         <span className="w-1 h-1 bg-[#b8860b] rounded-full mr-2" />
@@ -104,14 +104,14 @@ export default function ProductSection() {
                   </div>
                   
                   <div className="mb-4">
-                    <p className="text-sm text-gray-400 line-through mb-1">通常価格 {product.originalPrice}</p>
-                    <p className={`text-3xl font-light mb-1 ${product.popular ? 'text-[#b8860b]' : 'text-white'}`}>
+                    <p className="text-xs md:text-sm text-gray-400 line-through mb-1">通常価格 {product.originalPrice}</p>
+                    <p className={`text-2xl md:text-3xl font-light mb-1 ${product.popular ? 'text-[#b8860b]' : 'text-white'}`}>
                       {product.price}
                     </p>
                     <p className="text-xs text-gray-400">(税込)</p>
                   </div>
                   
-                  <button className={`w-full px-6 py-3 transition-all duration-300 relative overflow-hidden group/btn ${
+                  <button className={`w-full px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base transition-all duration-300 relative overflow-hidden group/btn ${
                     product.popular 
                       ? 'bg-gradient-to-r from-[#b8860b] to-[#d4c4b0] hover:from-[#d4c4b0] hover:to-[#b8860b] text-black' 
                       : 'bg-gradient-to-r from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white'
@@ -126,16 +126,16 @@ export default function ProductSection() {
 
           {/* Ingredients Section */}
           <div className="mt-20">
-            <h3 className="text-2xl font-light mb-12 text-center text-white tracking-wide">全成分・効果</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 border border-[#b8860b]/20 hover:border-[#b8860b]/40 transition-all duration-300">
+            <h3 className="text-xl md:text-2xl font-light mb-8 md:mb-12 text-center text-white tracking-wide">全成分・効果</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 md:p-8 border border-[#b8860b]/20 hover:border-[#b8860b]/40 transition-all duration-300">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-[#b8860b]/20 to-[#d4c4b0]/20 rounded-full flex items-center justify-center mr-4">
                     <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#b8860b]">
                       <path fill="currentColor" d="M2,3H11V12H2V3M7,8L9.5,10.5L16,4L17.5,5.5L9.5,13.5L5.5,9.5L7,8M13,3H22V12H13V3M2,13H11V22H2V13M13,13H22V22H13V13Z"/>
                     </svg>
                   </div>
-                  <h4 className="text-xl font-light text-white">主要成分</h4>
+                  <h4 className="text-lg md:text-xl font-light text-white">主要成分</h4>
                 </div>
                 <div className="space-y-4">
                   {ingredients.map((ingredient, index) => (
@@ -147,14 +147,14 @@ export default function ProductSection() {
                 </div>
               </div>
               
-              <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 border border-[#b8860b]/20 hover:border-[#b8860b]/40 transition-all duration-300">
+              <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 md:p-8 border border-[#b8860b]/20 hover:border-[#b8860b]/40 transition-all duration-300">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-[#b8860b]/20 to-[#d4c4b0]/20 rounded-full flex items-center justify-center mr-4">
                     <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#b8860b]">
                       <path fill="currentColor" d="M12,8A3,3 0 0,1 15,11A3,3 0 0,1 12,14A3,3 0 0,1 9,11A3,3 0 0,1 12,8M12,2L13.39,5.42C13.65,5.15 13.98,5 14.34,5C14.69,5 15,5.15 15.27,5.42L18.7,4L20.1,6.93L17.25,8.75C17.28,8.91 17.28,9.08 17.25,9.25L20.1,11.07L18.7,14L15.27,12.58C15,12.85 14.69,13 14.34,13C13.98,13 13.65,12.85 13.39,12.58L10,14L8.6,11.07L11.45,9.25C11.42,9.08 11.42,8.91 11.45,8.75L8.6,6.93L10,4L13.39,5.42L12,2M12,22L10.61,18.58L7.22,20L5.82,17.07L8.67,15.25C8.64,15.08 8.64,14.91 8.67,14.75L5.82,12.93L7.22,10L10.61,11.42C10.88,11.15 11.19,11 11.54,11C11.9,11 12.21,11.15 12.47,11.42L15.87,10L17.27,12.93L14.42,14.75C14.45,14.91 14.45,15.08 14.42,15.25L17.27,17.07L15.87,20L12.47,18.58L12,22Z"/>
                     </svg>
                   </div>
-                  <h4 className="text-xl font-light text-white">期待できる効果</h4>
+                  <h4 className="text-lg md:text-xl font-light text-white">期待できる効果</h4>
                 </div>
                 <div className="space-y-4">
                   {effects.map((effect, index) => (
