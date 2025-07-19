@@ -1,71 +1,60 @@
 export default function FeatureSection() {
   const features = [
     {
-      number: "1",
-      title: "肌への優しさ",
-      description: "医薬部外品認定の処方で、敏感肌の方にも安心。特殊な微粒子が肌表面に優しく密着し、自然な美しさを引き出します。"
+      title: "朝の5秒で完成",
+      subtitle: "忙しい朝でも",
+      description: "特殊微粒子がワンタッチで均一に広がり、プロのメイクアップアーティストが仕上げたような陶器肌が瞬時に完成。",
+      icon: "⏱",
+      gradient: "from-[#FFF8F0] to-[#FFE4E1]"
     },
     {
-      number: "2",
-      title: "長時間持続",
-      description: "独自の微粒子技術により、朝から夜まで崩れ知らず。汗や皮脂に強く、美しい仕上がりが24時間続きます。"
+      title: "24時間崩れない",
+      subtitle: "夜まで美しく",
+      description: "独自の密着技術により、汗や皮脂に強く、マスクをしても崩れない。朝の美しさが夜まで続きます。",
+      icon: "✨",
+      gradient: "from-[#F0F8FF] to-[#E6E6FA]"
     },
     {
-      number: "3",
-      title: "陶器肌仕上げ",
-      description: "光を美しく拡散させる特殊構造により、毛穴や凹凸を自然にカバー。滑らかで上品な陶器肌を演出します。"
+      title: "肌に優しい",
+      subtitle: "医薬部外品認定",
+      description: "35億年前の生命起源から抽出した天然由来成分を配合。敏感肌の方でも安心してお使いいただけます。",
+      icon: "🌿",
+      gradient: "from-[#F0FFF0] to-[#E0FFE0]"
     }
   ];
 
   return (
-    <section id="feature" className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <p className="text-sm text-gray-600 mb-4 tracking-wider">特徴</p>
-          <h2 className="text-3xl md:text-4xl font-light mb-8 text-gray-800 tracking-wide">
-            三つの約束
-          </h2>
-          <div className="w-20 h-1 bg-gray-300 mx-auto" />
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-12 max-w-7xl mx-auto">
-          {features.map((feature, index) => (
-            <div 
-              key={index} 
-              className="text-center group luxury-reveal"
-              style={{animationDelay: `${index * 0.2}s`}}
-            >
-              <div className="mb-10">
-                <div className="w-24 h-24 mx-auto relative">
-                  <svg viewBox="0 0 100 100" className="w-full h-full">
-                    <defs>
-                      <linearGradient id={`grad${index + 1}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style={{stopColor: '#f8f8f8', stopOpacity: 1}} />
-                        <stop offset="100%" style={{stopColor: '#e8e8e8', stopOpacity: 1}} />
-                      </linearGradient>
-                    </defs>
-                    {/* Outer rings */}
-                    <circle cx="50" cy="50" r="48" fill="none" stroke="#e0e0e0" strokeWidth="0.5" opacity="0.3" />
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="#e0e0e0" strokeWidth="0.3" opacity="0.2" />
-                    <circle cx="50" cy="50" r="42" fill={`url(#grad${index + 1})`} opacity="0.1" />
-                    {/* Main circle */}
-                    <circle cx="50" cy="50" r="40" fill="white" opacity="0.95" />
-                    {/* Inner design */}
-                    <circle cx="50" cy="50" r="38" fill="none" stroke="#f0f0f0" strokeWidth="0.5" />
-                    {/* Number */}
-                    <text x="50" y="55" textAnchor="middle" fontSize="24" fill="#888" fontWeight="300">
-                      {feature.number}
-                    </text>
-                  </svg>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-sm text-gray-600 mb-4 tracking-[0.2em]">FEATURES</p>
+            <h2 className="text-3xl md:text-4xl font-thin text-gray-900 mb-6">
+              なぜ、選ばれ続けるのか
+            </h2>
+            <div className="w-20 h-[1px] bg-[#D4C4B0] mx-auto" />
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div key={index} className="group">
+                <div className="bg-white p-8 h-full luxury-shadow transition-all duration-300 hover:transform hover:scale-105">
+                  <div className={`w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center text-3xl`}>
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-medium text-gray-900 mb-2 text-center">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-4 text-center">
+                    {feature.subtitle}
+                  </p>
+                  <p className="text-gray-600 text-sm leading-relaxed text-center">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
-              <p className="text-sm text-gray-500 mb-2 tracking-wider">第{feature.number}の約束</p>
-              <h3 className="text-xl mb-4 text-gray-800">{feature.title}</h3>
-              <p className="text-gray-600 leading-relaxed text-sm px-4">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

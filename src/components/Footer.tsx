@@ -7,20 +7,20 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="py-20 bg-white border-t border-[#d4c4b0]">
+    <footer className="py-20 bg-black border-t border-[#b8860b]/20">
       <div className="container mx-auto px-4">
         <div className="text-center">
-          <h3 className="text-2xl text-gray-800 mb-4 font-light tracking-wider">
+          <h3 className="text-2xl text-[#b8860b] mb-4 font-light tracking-wider">
             Mother Vegetables Confidence
           </h3>
-          <p className="text-lg text-gray-600 mb-8">MV-Si002</p>
+          <p className="text-lg text-gray-400 mb-8">MV-Si002</p>
           
-          <div className="flex justify-center space-x-8 text-gray-600 mb-12 text-sm">
+          <div className="flex justify-center space-x-8 text-gray-400 mb-12 text-sm">
             {links.map((link) => (
               <a 
                 key={link.label}
                 href={link.href} 
-                className="hover:text-gray-900 transition-colors"
+                className="hover:text-[#b8860b] transition-colors"
               >
                 {link.label}
               </a>
