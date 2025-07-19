@@ -27,7 +27,7 @@ export default function Footer() {
             ))}
           </div>
           
-          <div className="w-24 md:w-32 h-[1px] bg-gradient-to-r from-transparent via-[#b8860b] to-transparent mx-auto mb-6 md:mb-8" />
+          <div className="w-24 md:w-32 h-[1px] bg-gradient-to-r from-transparent via-[#B8860B] to-transparent mx-auto mb-6 md:mb-8" />
           
           <p className="text-xs md:text-sm text-gray-500 font-light">
             © 2025 Mother Vegetables Confidence. All rights reserved.

@@ -21,10 +21,10 @@ export default function HeroSection() {
       />
       
       {/* アンビエント呼吸エフェクト */}
-      <div className="absolute top-20 right-20 w-96 h-96 bg-gray-200/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-32 right-20 w-96 h-96 bg-gray-200/20 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-gray-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
       
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-20">
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
           {/* 左側：テキストコンテンツ */}
           <div className={`space-y-8 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'} transition-all duration-1000`}>
@@ -63,9 +63,9 @@ export default function HeroSection() {
           
           {/* 右側：ビジュアル */}
           <div className={`relative ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} transition-all duration-1000 delay-300`}>
-            <div className="relative bg-gradient-to-br from-gray-50 via-white to-gray-50 rounded-3xl p-12 shadow-xl">
+            <div className="relative bg-gradient-to-br from-gray-50 via-white to-gray-50 rounded-3xl p-8 md:p-12 shadow-xl">
               {/* タイムラインビジュアル */}
-              <div className="flex items-center justify-center space-x-6 mb-12">
+              <div className="flex items-center justify-center space-x-4 md:space-x-6 mb-8 md:mb-12">
                 {/* 朝のアイコン */}
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center shadow-lg mb-2">
@@ -78,7 +78,7 @@ export default function HeroSection() {
                 </div>
                 
                 {/* 矢印 */}
-                <div className="flex-1 max-w-[80px]">
+                <div className="flex-1 max-w-[60px] md:max-w-[80px]">
                   <div className="h-1 bg-gradient-to-r from-orange-200 via-purple-200 to-indigo-200 rounded-full relative">
                     <div className="absolute inset-0 flex items-center justify-center">
                       <svg viewBox="0 0 24 24" className="w-4 h-4 text-gray-400">
@@ -102,7 +102,7 @@ export default function HeroSection() {
               
               {/* 中央のメッセージ */}
               <div className="relative">
-                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl text-center">
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-xl text-center">
                   <h3 className="text-xl font-light text-gray-700 mb-2">朝の5秒で</h3>
                   <p className="text-2xl font-medium text-gray-900 mb-4">24時間美しさ持続</p>
                   <div className="w-16 h-px bg-gray-300 mx-auto mb-4" />
