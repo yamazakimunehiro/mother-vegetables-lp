@@ -12,8 +12,8 @@ export default function ConceptSection() {
             <div className="w-20 h-[1px] bg-[#D4C4B0] mx-auto" />
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="space-y-6">
+          <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto">
+            <div className="space-y-6 text-center">
               <p className="text-lg text-gray-700 leading-relaxed">
                 Mother Vegetables Confidence MV-Si002は、
                 地球上に生命が誕生した35億年前の環境から
@@ -30,24 +30,6 @@ export default function ConceptSection() {
                 忙しい現代を生きるあなたの、
                 新しい美の習慣をご提案します。
               </p>
-            </div>
-            
-            <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-[#FFF8F0] to-[#FFE4E1] rounded-full relative overflow-hidden max-w-[400px] mx-auto">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <p className="text-6xl font-thin text-gray-800 mb-4">35</p>
-                    <p className="text-sm text-gray-600">億年前の生命起源</p>
-                    <div className="mt-8">
-                      <div className="w-32 h-32 mx-auto relative">
-                        <div className="absolute inset-0 border-2 border-[#D4C4B0] rounded-full animate-pulse" />
-                        <div className="absolute inset-4 border border-[#D4C4B0] rounded-full animate-pulse" style={{animationDelay: '0.5s'}} />
-                        <div className="absolute inset-8 border border-[#D4C4B0] rounded-full animate-pulse" style={{animationDelay: '1s'}} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

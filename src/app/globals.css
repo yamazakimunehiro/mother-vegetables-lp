@@ -11,8 +11,8 @@
   
   body {
     font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: #000000;
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: #333333;
     line-height: 1.7;
     overflow-x: hidden;
   }
