@@ -13,16 +13,29 @@ export default function HeroSection() {
     <section className="relative min-h-screen overflow-hidden">
       {/* 背景画像レイヤー */}
       <div className="absolute inset-0">
-        {/* グラデーション背景 */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+        {/* ベース背景 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-[#0a0a0a] to-black" />
         
-        {/* 高級感のあるパウダーテクスチャ */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(184, 134, 11, 0.3) 0%, transparent 50%),
-                             radial-gradient(circle at 80% 50%, rgba(212, 196, 176, 0.2) 0%, transparent 50%),
-                             radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%)`,
+        {/* 陶器肌のビジュアル表現 */}
+        <div className="absolute inset-0">
+          {/* 大きな円形グラデーション - 陶器の光沢 */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]">
+            <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-[#D4C4B0]/30 to-transparent rounded-full blur-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#B8860B]/20 via-transparent to-[#D4C4B0]/10 rounded-full blur-2xl animate-pulse" />
+          </div>
+          
+          {/* 陶器の表面テクスチャ */}
+          <div className="absolute inset-0 opacity-40" style={{
+            backgroundImage: `
+              radial-gradient(ellipse 800px 400px at 50% 0%, rgba(255,255,255,0.1) 0%, transparent 40%),
+              radial-gradient(circle at 25% 50%, rgba(184, 134, 11, 0.15) 0%, transparent 35%),
+              radial-gradient(circle at 75% 50%, rgba(212, 196, 176, 0.1) 0%, transparent 35%),
+              linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%)
+            `,
           }} />
+          
+          {/* ハイライト効果 */}
+          <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent" />
         </div>
         
         {/* パウダーパーティクル効果 */}
@@ -43,12 +56,26 @@ export default function HeroSection() {
           ))}
         </div>
         
-        {/* 中央の光輪エフェクト */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-[600px] h-[600px]">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#B8860B]/20 via-transparent to-[#D4C4B0]/20 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute inset-8 bg-gradient-to-r from-[#D4C4B0]/10 via-transparent to-[#B8860B]/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
-          </div>
+        {/* キラキラエフェクト - パウダーの輝き */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => {
+            const size = Math.random() * 3 + 1;
+            const duration = Math.random() * 3 + 2;
+            const delay = Math.random() * 5;
+            return (
+              <div
+                key={`sparkle-${i}`}
+                className="absolute rounded-full bg-white"
+                style={{
+                  width: `${size}px`,
+                  height: `${size}px`,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animation: `sparkle ${duration}s ${delay}s ease-in-out infinite`,
+                }}
+              />
+            );
+          })}
         </div>
         
         {/* オーバーレイグラデーション */}
@@ -142,12 +169,12 @@ export default function HeroSection() {
         </div>
       </div>
       
-      {/* スクロールインジケーター */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      {/* スクロールインジケーター - 位置を調整 */}
+      <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-20">
         <div className="flex flex-col items-center space-y-2 text-gray-400">
-          <p className="text-xs tracking-wider">SCROLL</p>
-          <div className="w-px h-12 bg-gray-400 relative overflow-hidden">
-            <div className="absolute top-0 w-full h-4 bg-white animate-bounce" />
+          <p className="text-xs tracking-wider writing-mode-vertical">SCROLL</p>
+          <div className="w-px h-8 bg-gray-400/50 relative overflow-hidden">
+            <div className="absolute top-0 w-full h-2 bg-white/80 animate-bounce" />
           </div>
         </div>
       </div>
@@ -168,6 +195,22 @@ export default function HeroSection() {
             transform: translateY(-100vh) rotate(360deg);
             opacity: 0;
           }
+        }
+        
+        @keyframes sparkle {
+          0%, 100% {
+            opacity: 0;
+            transform: scale(0);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        .writing-mode-vertical {
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
         }
       `}</style>
     </section>
