@@ -27,9 +27,9 @@ export default function HeroSection() {
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-12 md:py-20">
         <div className="max-w-7xl mx-auto w-full">
           {/* モバイルファースト：縦配置 */}
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* テキストコンテンツ */}
-            <div className={`space-y-6 md:space-y-8 text-center lg:text-left ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-1000`}>
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* テキストコンテンツ - モバイルでは2番目 */}
+            <div className={`space-y-6 md:space-y-8 text-center lg:text-left order-2 lg:order-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-1000`}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin text-gray-900 leading-tight">
                 朝の5秒が、<br />
                 <span className="font-normal">一日を変える。</span>
@@ -40,12 +40,12 @@ export default function HeroSection() {
                 崩れ知らずの陶器肌で、24時間美しさが持続。
               </p>
               
-              <div className="hidden md:block">
-                <p className="text-sm text-gray-500 mb-2">医薬部外品認定</p>
-                <h2 className="text-2xl md:text-3xl font-thin text-gray-800">
+              <div>
+                <p className="text-xs md:text-sm text-gray-500 mb-2">医薬部外品認定</p>
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-thin text-gray-800">
                   Mother Vegetables Confidence
                 </h2>
-                <p className="text-lg md:text-xl text-gray-600 mt-1">MV-Si002</p>
+                <p className="text-base md:text-lg lg:text-xl text-gray-600 mt-1">MV-Si002</p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -63,8 +63,8 @@ export default function HeroSection() {
               </div>
             </div>
             
-            {/* ビジュアル - モバイルでは下に表示 */}
-            <div className={`relative w-full max-w-lg mx-auto ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} transition-all duration-1000 delay-300`}>
+            {/* ビジュアル - モバイルでは最初に表示 */}
+            <div className={`relative w-full max-w-lg mx-auto order-1 lg:order-2 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} transition-all duration-1000 delay-300`}>
               {/* メインビジュアルコンテナ */}
               <div className="relative">
                 {/* 背景の装飾 */}
@@ -159,14 +159,7 @@ export default function HeroSection() {
                 </div>
               </div>
               
-              {/* モバイル用の製品情報 */}
-              <div className="md:hidden mt-8 text-center">
-                <p className="text-xs text-gray-500 mb-2">医薬部外品認定</p>
-                <h2 className="text-xl font-thin text-gray-800">
-                  Mother Vegetables Confidence
-                </h2>
-                <p className="text-base text-gray-600 mt-1">MV-Si002</p>
-              </div>
+              {/* モバイル用の製品情報 - テキストセクションに移動 */}
             </div>
           </div>
         </div>
