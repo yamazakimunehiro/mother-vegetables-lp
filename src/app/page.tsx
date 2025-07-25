@@ -1,23 +1,8 @@
-import HeroSection from "@/components/HeroSection";
-import ConceptSection from "@/components/ConceptSection";
-import FeatureSection from "@/components/FeatureSection";
-import TestimonialSection from "@/components/TestimonialSection";
-import ProductSection from "@/components/ProductSection";
-import GuaranteeSection from "@/components/GuaranteeSection";
-import FAQSection from "@/components/FAQSection";
-import Footer from "@/components/Footer";
+// src/app/page.tsx
+
+import SharedPage from "@/components/SharedPage"; // ← 共通レイアウト化したもの
+import ProductSection from "@/components/ProductSection"; // ← 通常の商品セクション
 
 export default function Home() {
-  return (
-    <>
-      <HeroSection />
-      <ConceptSection />
-      <FeatureSection />
-      <TestimonialSection />
-      <ProductSection />
-      <GuaranteeSection />
-      <FAQSection />
-      <Footer />
-    </>
-  );
+  return <SharedPage productSection={<ProductSection />} />;
 }
