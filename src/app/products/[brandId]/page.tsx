@@ -1,21 +1,10 @@
-// src/app/products/[brandId]/page.tsx
-import { notFound } from "next/navigation";
-import SharedPage from "@/components/SharedPage";
-
-export const dynamic = "force-dynamic";
-
-export default async function BrandPage({
-  params,
-}: {
-  params: { brandId: string };
-}) {
+export default async function BrandPage({ params }: { params: { brandId: string } }) {
   const { brandId } = params;
 
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://your-deployment.vercel.app";
 
   const res = await fetch(`${baseUrl}/api/products`, {
-    method: "POST",
     cache: "no-store",
   });
 
@@ -32,7 +21,6 @@ export default async function BrandPage({
     <section id="product" className="py-20 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-6">商品ラインナップ</h2>
-
         {products.length === 0 ? (
           <p>該当する商品が見つかりませんでした。</p>
         ) : (
