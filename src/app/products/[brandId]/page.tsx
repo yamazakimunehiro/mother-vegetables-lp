@@ -1,6 +1,6 @@
 // src/app/products/[brandId]/page.tsx
-import SharedPage from "@/components/SharedPage";
 import { notFound } from "next/navigation";
+import SharedPage from "@/components/SharedPage";
 
 type Product = {
   _id: string;
@@ -17,7 +17,6 @@ async function getFilteredProducts(brandId: string): Promise<Product[]> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
     cache: "no-store",
     headers: {
-      // SSRなら .env の WIX_API_KEY を backend で使える
       Authorization: `Bearer ${process.env.WIX_API_KEY}`,
       "wix-site-id": process.env.WIX_SITE_ID!,
       "Content-Type": "application/json",
@@ -25,12 +24,12 @@ async function getFilteredProducts(brandId: string): Promise<Product[]> {
     method: "POST",
     body: JSON.stringify({
       query: {},
-      paging: { limit: 300 }, // 必要に応じて増やす
+      paging: { limit: 300 },
     }),
   });
 
   if (!res.ok) {
-    console.error("API fetch failed");
+    console.error("API fetch failed", res.status);
     return [];
   }
 
@@ -42,18 +41,20 @@ async function getFilteredProducts(brandId: string): Promise<Product[]> {
   );
 }
 
-export default async function BrandPage({
-  params,
-}: {
-  params: { brandId: string };
-}) {
-  const { brandId } = params;
-  const products = await getFilteredProducts(brandId);
+// App Router の params 型を明示的に定義
+interface BrandPageProps {
+  params: {
+    brandId: string;
+  };
+}
+
+export default async function BrandPage({ params }: BrandPageProps) {
+  const products = await getFilteredProducts(params.brandId);
 
   if (!products || products.length === 0) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-2xl font-bold">「{brandId.toUpperCase()}」さん向け商品一覧</h2>
+        <h2 className="text-2xl font-bold">「{params.brandId.toUpperCase()}」さん向け商品一覧</h2>
         <p className="text-gray-500 mt-4">該当する商品が見つかりませんでした。</p>
       </div>
     );
