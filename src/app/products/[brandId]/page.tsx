@@ -1,22 +1,29 @@
 // src/app/products/[brandId]/page.tsx
+import { notFound } from "next/navigation";
 import SharedPage from "@/components/SharedPage";
 
-type Props = {
+type PageProps = {
   params: {
     brandId: string;
   };
 };
 
-export async function generateStaticParams() {
-  return []; // ビルド時に静的生成しない場合、空配列を返せばOK
-}
+// 念のため追加して静的生成回避（ISRやSSRと併用するため）
+export const dynamic = "force-dynamic";
 
-export default async function BrandPage({ params }: Props) {
+export default async function BrandPage({ params }: PageProps) {
   const { brandId } = params;
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
+  // 環境変数が使えるか確認
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL || "https://your-deployment.vercel.app";
+
+  const res = await fetch(`${baseUrl}/api/products`, {
     cache: "no-store",
   });
+
+  if (!res.ok) return notFound();
+
   const data = await res.json();
   const allProducts = data.products || [];
 
@@ -48,7 +55,6 @@ export default async function BrandPage({ params }: Props) {
                   <p className="text-sm text-gray-500 mt-2">
                     {product.description}
                   </p>
-
                   {url ? (
                     <a
                       href={url}
