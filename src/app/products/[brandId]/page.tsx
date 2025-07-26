@@ -12,37 +12,8 @@ type Product = {
   };
 };
 
-type Params = {
-  brandId: string;
-};
-
-export async function generateStaticParams(): Promise<{ brandId: string }[]> {
-  return []; // 必要に応じて事前生成したいIDを追加
-}
-
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  return {
-    title: `${params.brandId.toUpperCase()}さん向け商品一覧`,
-  };
-}
-
-async function getFilteredProducts(brandId: string): Promise<Product[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    console.error("商品取得失敗:", res.statusText);
-    return [];
-  }
-
-  const data = await res.json();
-  return (data.products || []).filter((product: Product) =>
-    product.sku?.toLowerCase().endsWith(`-${brandId.toLowerCase()}`)
-  );
-}
-
-export default async function BrandPage({ params }: { params: Params }) {
+// 🚨 ビルドエラー対策：paramsは直接引数で受け取らず、props全体を受け取って分解
+export default async function BrandPage({ params }: { params: { brandId: string } }) {
   const products = await getFilteredProducts(params.brandId);
 
   const DynamicProductSection = () => (
@@ -89,4 +60,32 @@ export default async function BrandPage({ params }: { params: Params }) {
   );
 
   return <SharedPage productSection={<DynamicProductSection />} />;
+}
+
+async function getFilteredProducts(brandId: string): Promise<Product[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    console.error("商品取得エラー:", res.statusText);
+    return [];
+  }
+
+  const data = await res.json();
+  return (data.products || []).filter((product: Product) =>
+    product.sku?.toLowerCase().endsWith(`-${brandId.toLowerCase()}`)
+  );
+}
+
+// ★ generateStaticParams: ダミーでも必要。ビルド失敗回避のため
+export async function generateStaticParams() {
+  return [];
+}
+
+// ★ generateMetadata: 任意（SEO対応用）
+export async function generateMetadata({ params }: { params: { brandId: string } }): Promise<Metadata> {
+  return {
+    title: `${params.brandId.toUpperCase()}さんの商品`,
+  };
 }
