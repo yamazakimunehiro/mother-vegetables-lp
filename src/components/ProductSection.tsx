@@ -18,7 +18,9 @@ export default function ProductSection() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('/api/products');
+        const res = await fetch('/api/products', {
+          method: 'POST',
+        });
         if (!res.ok) throw new Error('API fetch failed');
         const data = await res.json();
         console.log('取得結果:', data);

@@ -8,17 +8,16 @@ type PageProps = {
   };
 };
 
-// 念のため追加して静的生成回避（ISRやSSRと併用するため）
 export const dynamic = "force-dynamic";
 
 export default async function BrandPage({ params }: PageProps) {
   const { brandId } = params;
 
-  // 環境変数が使えるか確認
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://your-deployment.vercel.app";
 
   const res = await fetch(`${baseUrl}/api/products`, {
+    method: "POST",
     cache: "no-store",
   });
 
