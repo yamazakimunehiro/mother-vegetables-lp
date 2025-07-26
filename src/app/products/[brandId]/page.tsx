@@ -1,8 +1,6 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+// src/app/products/[brandId]/page.tsx
 import SharedPage from "@/components/SharedPage";
+import { notFound } from "next/navigation";
 
 type Product = {
   _id: string;
@@ -13,88 +11,92 @@ type Product = {
     base: string;
     path: string;
   };
-  stock?: {
-    trackInventory: boolean;
-    inStock: boolean;
-  };
 };
 
-export default function BrandPage() {
-  const params = useParams();
-  const brandId = params?.brandId as string;
+async function getFilteredProducts(brandId: string): Promise<Product[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
+    cache: "no-store",
+    headers: {
+      // SSRなら .env の WIX_API_KEY を backend で使える
+      Authorization: `Bearer ${process.env.WIX_API_KEY}`,
+      "wix-site-id": process.env.WIX_SITE_ID!,
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      query: {},
+      paging: { limit: 300 }, // 必要に応じて増やす
+    }),
+  });
 
-  const [products, setProducts] = useState<Product[] | null>(null);
+  if (!res.ok) {
+    console.error("API fetch failed");
+    return [];
+  }
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        const all = data.products || [];
+  const data = await res.json();
+  const allProducts: Product[] = data.products || [];
 
-        const filtered = all.filter((p: Product) => {
-          const sku = p.sku?.toLowerCase() || "";
-          return (
-            sku.endsWith(`-${brandId.toLowerCase()}`) &&
-            (!p.stock?.trackInventory || p.stock?.inStock)
-          );
-        });
-
-        setProducts(filtered);
-      } catch (err) {
-        console.error("商品取得エラー:", err);
-        setProducts([]);
-      }
-    };
-
-    fetchProducts();
-  }, [brandId]);
-
-  const DynamicProductSection = () => (
-    <section id="product" className="py-20 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-6">
-          「{brandId.toUpperCase()}」さん向け商品一覧
-        </h2>
-
-        {!products ? (
-          <p>読み込み中...</p>
-        ) : products.length === 0 ? (
-          <p>該当する商品が見つかりませんでした。</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {products.map((product, index) => {
-              const url =
-                product.productPageUrl?.base && product.productPageUrl?.path
-                  ? product.productPageUrl.base + product.productPageUrl.path
-                  : null;
-
-              return (
-                <div
-                  key={product._id || index}
-                  className="bg-white p-6 rounded-lg shadow hover:shadow-md transition"
-                >
-                  <h3 className="text-lg font-semibold mb-4">{product.name}</h3>
-                  {url ? (
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block mt-2 px-4 py-2 text-sm font-medium text-white bg-[#b8860b] rounded hover:bg-[#d4c4b0] transition"
-                    >
-                      詳細はこちら
-                    </a>
-                  ) : (
-                    <p className="text-xs text-gray-400 mt-2">リンク未設定</p>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-    </section>
+  return allProducts.filter((product) =>
+    product.sku?.toLowerCase().endsWith(`-${brandId.toLowerCase()}`)
   );
+}
 
-  return <SharedPage productSection={<DynamicProductSection />} />;
+export default async function BrandPage({
+  params,
+}: {
+  params: { brandId: string };
+}) {
+  const { brandId } = params;
+  const products = await getFilteredProducts(brandId);
+
+  if (!products || products.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <h2 className="text-2xl font-bold">「{brandId.toUpperCase()}」さん向け商品一覧</h2>
+        <p className="text-gray-500 mt-4">該当する商品が見つかりませんでした。</p>
+      </div>
+    );
+  }
+
+  return (
+    <SharedPage
+      productSection={
+        <section id="product" className="py-20 md:py-24 bg-gray-50">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6">商品ラインナップ</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {products.map((product) => {
+                const url =
+                  product.productPageUrl?.base && product.productPageUrl?.path
+                    ? product.productPageUrl.base + product.productPageUrl.path
+                    : null;
+
+                return (
+                  <div
+                    key={product._id}
+                    className="bg-white p-6 rounded-lg shadow hover:shadow-md transition"
+                  >
+                    <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
+                    {url ? (
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block mt-4 px-4 py-2 text-sm font-medium text-white bg-[#b8860b] rounded hover:bg-[#d4c4b0] transition"
+                      >
+                        詳細はこちら
+                      </a>
+                    ) : (
+                      <p className="text-xs text-gray-400 mt-4">リンク未設定</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      }
+    />
+  );
 }
