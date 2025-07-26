@@ -1,15 +1,22 @@
-// ✅ 型注釈を明示せず、params から直接 brandId を抽出する
+// src/app/products/[brandId]/page.tsx
+import { notFound } from "next/navigation";
+import SharedPage from "@/components/SharedPage";
 
+// ✅ 型をここに直接書く（PageProps型などを作らない）
 export const dynamic = "force-dynamic";
 
-export default async function BrandPage({ params }: { params: { brandId: string } }) {
+export default async function BrandPage({
+  params,
+}: {
+  params: { brandId: string };
+}) {
   const { brandId } = params;
 
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://your-deployment.vercel.app";
 
   const res = await fetch(`${baseUrl}/api/products`, {
-    method: "POST",
+    method: "POST", // POSTを忘れずに！
     cache: "no-store",
   });
 
