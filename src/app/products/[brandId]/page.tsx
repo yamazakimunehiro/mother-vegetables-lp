@@ -1,3 +1,5 @@
+import SharedPage from "@/components/SharedPage";
+
 export default async function BrandPage({ params }: { params: { brandId: string } }) {
   const { brandId } = params;
 
