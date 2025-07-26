@@ -4,12 +4,15 @@ import SharedPage from "@/components/SharedPage";
 
 export const dynamic = "force-dynamic";
 
-// ✅ ✅ ✅ 型は明示せず、Next.js に任せる！ここが重要
-export default async function BrandPage({ params }) {
+export default async function BrandPage({
+  params,
+}: {
+  params: { brandId: string };
+}) {
   const { brandId } = params;
 
   const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "https://your-vercel-domain.vercel.app";
+    process.env.NEXT_PUBLIC_BASE_URL || "https://your-deployment.vercel.app";
 
   const res = await fetch(`${baseUrl}/api/products`, {
     method: "POST",
