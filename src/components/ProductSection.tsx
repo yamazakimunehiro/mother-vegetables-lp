@@ -20,7 +20,11 @@ export default function ProductSection() {
       try {
         const res = await fetch('/api/products', {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         });
+
         if (!res.ok) throw new Error('API fetch failed');
         const data = await res.json();
         console.log('取得結果:', data);
