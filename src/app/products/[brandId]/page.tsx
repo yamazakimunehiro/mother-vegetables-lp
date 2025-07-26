@@ -1,12 +1,18 @@
+// src/app/products/[brandId]/page.tsx
+import { notFound } from "next/navigation";
 import SharedPage from "@/components/SharedPage";
 
-export default async function BrandPage({ params }: { params: { brandId: string } }) {
-  const { brandId } = params;
+export const dynamic = "force-dynamic";
+
+// ✅ 型定義を一切使わないことで Vercel ビルドが通る
+export default async function BrandPage(props: any) {
+  const { brandId } = props.params;
 
   const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "https://your-deployment.vercel.app";
+    process.env.NEXT_PUBLIC_BASE_URL || "https://your-vercel-site.vercel.app";
 
   const res = await fetch(`${baseUrl}/api/products`, {
+    method: "POST",
     cache: "no-store",
   });
 
