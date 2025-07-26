@@ -1,16 +1,8 @@
-// src/app/products/[brandId]/page.tsx
-import { notFound } from "next/navigation";
-import SharedPage from "@/components/SharedPage";
-
-type PageProps = {
-  params: {
-    brandId: string;
-  };
-};
+// ✅ 型注釈を明示せず、params から直接 brandId を抽出する
 
 export const dynamic = "force-dynamic";
 
-export default async function BrandPage({ params }: PageProps) {
+export default async function BrandPage({ params }: { params: { brandId: string } }) {
   const { brandId } = params;
 
   const baseUrl =
