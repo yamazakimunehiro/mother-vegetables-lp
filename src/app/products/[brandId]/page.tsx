@@ -11,12 +11,6 @@ type Product = {
   };
 };
 
-type Props = {
-  params: {
-    brandId: string;
-  };
-};
-
 async function getFilteredProducts(brandId: string): Promise<Product[]> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
     cache: "no-store",
@@ -35,9 +29,8 @@ async function getFilteredProducts(brandId: string): Promise<Product[]> {
   );
 }
 
-export default async function BrandPage({ params }: Props) {
-  const { brandId } = params;
-  const products = await getFilteredProducts(brandId);
+export default async function BrandPage({ params }: { params: { brandId: string } }) {
+  const products = await getFilteredProducts(params.brandId);
 
   return (
     <SharedPage
@@ -58,7 +51,7 @@ export default async function BrandPage({ params }: Props) {
 
                   return (
                     <div
-                      key={`${product._id}-${product.sku}`} // 🔑 重複防止
+                      key={`${product._id}-${product.sku}`}
                       className="bg-white p-6 rounded-lg shadow hover:shadow-md transition"
                     >
                       <h3 className="text-lg font-semibold">{product.name}</h3>
