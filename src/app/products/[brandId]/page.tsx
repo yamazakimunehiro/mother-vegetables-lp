@@ -50,9 +50,7 @@ export default async function BrandPage(props: any) {
                   </p>
                   {url ? (
                     <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`/product/${product._id}`}
                       className="inline-block mt-4 px-4 py-2 text-sm font-medium text-white bg-[#b8860b] rounded hover:bg-[#d4c4b0] transition"
                     >
                       詳細はこちら
