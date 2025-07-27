@@ -34,7 +34,7 @@ export default async function ProductDetailPage({ params }: any) {
             rel="noopener noreferrer"
             className="inline-block mt-6 px-6 py-3 bg-[#b8860b] text-white rounded hover:bg-[#d4c4b0] transition"
           >
-            Wixの商品ページを見る
+            Wixの商品ページを見
           </a>
         )}
       </div>
