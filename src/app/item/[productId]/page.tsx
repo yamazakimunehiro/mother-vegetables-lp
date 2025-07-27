@@ -3,13 +3,11 @@ import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
-export default async function ProductDetailPage({
-  params,
-}: {
-  params: { productId: string };
-}) {
+export default async function ProductDetailPage({ params }: any) {
+  const { productId } = params;
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${params.productId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${productId}`,
     {
       cache: "no-store",
     }
